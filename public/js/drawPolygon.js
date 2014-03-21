@@ -27,11 +27,15 @@ function initialize() {
 }
 
 var path;
+var stopDrawing;
 /**
  * Handles click events on a map, and adds a new point to the Polygon.
  * @param {google.maps.MouseEvent} event
  */
 function addLatLng(event) {
+    if (stopDrawing) {
+        return;
+    }
 
   path = poly.getPath();
  
@@ -79,4 +83,8 @@ function showExistingPath() {
         var latLng = new google.maps.LatLng(listOfCoordinates[i].lat, listOfCoordinates[i].lon);
         addLatLng({"latLng" : latLng});
     }
+}
+
+function stop() {
+    stopDrawing = true;
 }
