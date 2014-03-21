@@ -10,7 +10,7 @@ function initialize(s) {
   socket = s;
   var mapOptions = {
     zoom: 13,
-    // Center the map on Sydeny, AUS.
+    // Center the map on Sydney, AUS.
     center: new google.maps.LatLng(-33.859867644619435, 151.21410369873047)
   };
 
