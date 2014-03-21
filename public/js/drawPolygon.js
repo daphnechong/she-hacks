@@ -42,9 +42,10 @@ function addLatLng(event) {
   createMarker(event.latLng)
 }
 
-function createMarker(latLng) {
+function createMarker(data) {
   path = poly.getPath();
 
+  latLng = new google.maps.LatLng(data.k, data.A);
   // // Because path is an MVCArray, we can simply append a new coordinate
   // // and it will automatically appear.
   path.push(latLng);
@@ -56,7 +57,10 @@ function createMarker(latLng) {
     map: map
   });
 
-  socket.emit('drawPolygon', latLng);
+  if (!data.isUpdateMessage) {
+    latLng.isUpdateMessage = true;
+    socket.emit('drawPolygon', latLng);
+  }
 }
 
 //google.maps.event.addDomListener(window, 'load', initialize);
