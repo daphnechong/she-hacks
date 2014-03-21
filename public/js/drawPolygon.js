@@ -4,15 +4,17 @@
 
 var poly;
 var map;
+var socket;
 
-function initialize() {
+function initialize(s) {
+  socket = s;
   var mapOptions = {
     zoom: 13,
     // Center the map on Sydeny, AUS.
     center: new google.maps.LatLng(-33.859867644619435, 151.21410369873047)
   };
 
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
   var polyOptions = {
     strokeColor: '#FF0000',
@@ -33,27 +35,31 @@ var stopDrawing;
  * @param {google.maps.MouseEvent} event
  */
 function addLatLng(event) {
-    if (stopDrawing) {
-        return;
-    }
+  if (stopDrawing) {
+      return;
+  }
 
+  createMarker(event.latLng)
+}
+
+function createMarker(latLng) {
   path = poly.getPath();
- 
 
-  // Because path is an MVCArray, we can simply append a new coordinate
-  // and it will automatically appear.
-  path.push(event.latLng);
-  console.log('Vertice coordinate latLng # ' + path.getLength(), event.latLng);
+  // // Because path is an MVCArray, we can simply append a new coordinate
+  // // and it will automatically appear.
+  path.push(latLng);
 
   // Add a new marker at the new plotted point on the polygon.
   var marker = new google.maps.Marker({
-    position: event.latLng,
+    position: latLng,
     title: '#' + path.getLength(),
     map: map
   });
+
+  socket.emit('drawPolygon', latLng);
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addDomListener(window, 'load', initialize);
 
 /**
  * Converts all the coordinates from path to a JSON String.

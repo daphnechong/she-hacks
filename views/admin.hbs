@@ -13,7 +13,7 @@
 
 
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script src="js/google-maps.js"></script>
+    <script src="js/drawPolygon.js"></script>
 
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -21,29 +21,29 @@
 
         $(document).ready(function() {
             var socket = io.connect('/');
+
+            google.maps.event.addDomListener(window, 'load', function() {
+				initialize(socket);
+			});
+
+
             socket.on('update', function (data) {
                 console.log('update : ' + data);
             });
 
-            $('#sendmessage').click(function(){
-                console.log('clicked');
-                socket.emit('update', 'hi there from admin');
-            });
+            // $('#sendmessage').click(function(){
+            //     console.log('clicked');
+            //     socket.emit('update', 'hi there from admin');
+            // });
 
-            $('#addPoint').click(function() {
-                socket.emit('addPoint', { latitude: 'latitude', longitude: 'longitude'})
-            })
+            // $('#addPoint').click(function() {
+            //     socket.emit('addPoint', { latitude: 'latitude', longitude: 'longitude'})
+            // })
 
             socket.on('registerVolunteer', function(data) {
                 // decrement count at point
                 console.log('need to decrement the count ' +
                         data.pointid );
-            })
-
-            $('#drawPolygon').click(function() {
-                // nb: we might need to know which polygon is being drawn?
-
-                socket.emit('drawPolygon', { latitude: 'latitude', longitude: 'longitude'})
             })
         });
 
@@ -81,11 +81,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div id="sendmessage">click me to send a message</div>
-
-            <div id="addPoint">click me to add a point to the map</div>
-
-            <div id="drawPolygon">click me to draw polygon on the map</div>
         </div>
     </div>
     <div class="row">
