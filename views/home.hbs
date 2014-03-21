@@ -10,9 +10,31 @@ $(document).ready(function() {
 	     console.log('update : ' + data);
 	});
 
+	socket.on('addPoint', function(data) {
+		// add point to map
+		console.log('need to add point to map here with lat/long ' + 
+			data.latitude + ' ' + data.longitude );
+	})
+
+	socket.on('drawPolygon', function(data) {
+		// add point to polygon
+		console.log('need to draw polygon here with lat/long ' + 
+			data.latitude + ' ' + data.longitude );
+	})
+
+	socket.on('registerVolunteer', function(data) {
+		// decrement count at point
+		console.log('need to decrement the count ' + 
+			data.pointid );
+	})
+
 	$('#sendmessage').click(function(){
 		console.log('clicked');
 		socket.emit('update', 'hi there from home');
+	});
+
+	$('#registerVolunteer').click(function() {
+		socket.emit('registerVolunteer', {pointid: 'pointid'})
 	});
 });
 
@@ -21,4 +43,6 @@ $(document).ready(function() {
 <div>Main home page</div>
 
 
-<div id="sendmessage">click me to send a message</a>
+<div id="sendmessage">click me to send a message</div>
+
+<div id="registerVolunteer">click me to volunteer at a point</div>

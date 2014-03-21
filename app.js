@@ -20,9 +20,33 @@ app.get('/admin', function(req, res) {
 });
 
 io.sockets.on('connection', function(socket) {
+	
 	socket.on('update', function (data) {
-	    io.sockets.emit('update', data);
+	    socket.broadcast.emit('update', data);
 	});
+
+	socket.on('addPoint', function(data) {
+		socket.broadcast.emit('addPoint', data)
+	})
+
+	socket.on('drawPolygon', function(data) {
+		socket.broadcast.emit('addPoint', data)
+	})
+
+	socket.on('registerVolunteer', function(data) {
+// potentially add the socket to a channel, and/or keep track of the id so you can PM the volunteer
+
+// http://stackoverflow.com/questions/6563885/socket-io-how-do-i-get-a-list-of-connected-sockets-clients
+// 		io.sockets.on('connection',function(socket){ 
+//     io.sockets.sockets['nickname'] = socket.id;
+//     client.on("chat", function(data) {      
+//         var sock_id = io.sockets.sockets['nickname']
+//         io.sockets.sockets[sock_id].emit("private", "message");
+//     });    
+// });
+
+		io.sockets.emit('registerVolunteer', data)
+	})
 });
 
 

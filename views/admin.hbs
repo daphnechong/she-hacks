@@ -15,10 +15,30 @@ $(document).ready(function() {
 		console.log('clicked');
 		socket.emit('update', 'hi there from admin');
 	});
+
+	$('#addPoint').click(function() {
+		socket.emit('addPoint', { latitude: 'latitude', longitude: 'longitude'})
+	})
+
+	socket.on('registerVolunteer', function(data) {
+		// decrement count at point
+		console.log('need to decrement the count ' + 
+			data.pointid );
+	})
+
+	$('#drawPolygon').click(function() {
+		// nb: we might need to know which polygon is being drawn?
+
+		socket.emit('drawPolygon', { latitude: 'latitude', longitude: 'longitude'})
+	})
 });
 
 </script>
 
 <div>Admin main page</div>
 
-<div id="sendmessage">click me to send a message</a>
+<div id="sendmessage">click me to send a message</div>
+
+<div id="addPoint">click me to add a point to the map</div>
+
+<div id="drawPolygon">click me to draw polygon on the map</div>
