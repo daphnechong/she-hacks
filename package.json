@@ -5,7 +5,8 @@
   "private": true,
   "dependencies": {
     "express": "*",
-    "hbs": "*"
+    "hbs": "*",
+    "socket.io": "*"
   },
   "scripts": { 
     "start": "node app.js" 
