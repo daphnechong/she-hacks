@@ -1,0 +1,13 @@
+{
+  "name": "she-hacks",
+  "description": "A disaster relief volunteer coordination platform",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "*",
+    "hbs": "*"
+  },
+  "scripts": { 
+    "start": "node app.js" 
+  }
+}
