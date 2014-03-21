@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Polygon Auto-completion</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="lib/json2.js"></script>
+    <script src="javascript/drawPolygon.js"></script>
+  </head>
+  <body>
+    <div>  
+        <input type="button" value="Show Path As Json" onClick="showPathAsJson()"/>
+        <input type="button" value="Draws an Existing Path" onClick="showExistingPath()"/>
+    </div>
+    <div id="map-canvas"></div>
+  </body>
+</html>
