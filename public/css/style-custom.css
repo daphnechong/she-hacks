@@ -1,0 +1,28 @@
+.navbar-inverse {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+
+.navbar-inverse .navbar-brand {
+    color: #ee8338;
+}
+
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    color: #F6B72E;
+}
+
+#map_canvas {
+    height: 600px;
+    background-color: #CCC;
+}
+
+.jumbotron {
+    background-color: #EE8338;
+    color: #fff;
+}
+
+.steps {
+    padding-top: 40px;
+}
