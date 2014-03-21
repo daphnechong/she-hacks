@@ -11,8 +11,44 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style-custom.css" rel="stylesheet">
 
+
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="js/google-maps.js"></script>
+
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript">
+
+        $(document).ready(function() {
+            var socket = io.connect('/');
+            socket.on('update', function (data) {
+                console.log('update : ' + data);
+            });
+
+            $('#sendmessage').click(function(){
+                console.log('clicked');
+                socket.emit('update', 'hi there from admin');
+            });
+
+            $('#addPoint').click(function() {
+                socket.emit('addPoint', { latitude: 'latitude', longitude: 'longitude'})
+            })
+
+            socket.on('registerVolunteer', function(data) {
+                // decrement count at point
+                console.log('need to decrement the count ' +
+                        data.pointid );
+            })
+
+            $('#drawPolygon').click(function() {
+                // nb: we might need to know which polygon is being drawn?
+
+                socket.emit('drawPolygon', { latitude: 'latitude', longitude: 'longitude'})
+            })
+        });
+
+    </script>
+
 </head>
 <body>
 
@@ -45,6 +81,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <div id="sendmessage">click me to send a message</div>
+
+            <div id="addPoint">click me to add a point to the map</div>
+
+            <div id="drawPolygon">click me to draw polygon on the map</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div id="map_canvas">
 
             </div>
@@ -61,9 +106,11 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
 
 </body>
 </html>
+
+
+
