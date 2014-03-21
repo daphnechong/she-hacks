@@ -30,7 +30,7 @@ io.sockets.on('connection', function(socket) {
 	})
 
 	socket.on('drawPolygon', function(data) {
-		socket.broadcast.emit('addPoint', data)
+		socket.broadcast.emit('drawPolygon', data)
 	})
 
 	socket.on('registerVolunteer', function(data) {
