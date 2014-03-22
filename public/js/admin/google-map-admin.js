@@ -27,6 +27,9 @@ var contentString = '<div id="content" >'+
 
 var adminForm;
 var musterLocation;
+var forms = [];
+var points = [];
+var data = [];
 
 var setupListeners = function() {
       // Add a listener for the click event
@@ -56,6 +59,7 @@ function createMusterMarker(location) {
     });
 
     adminForm.open(map,muster);
+    points[location] = muster;
     musterLocation = location;
   }
 }
@@ -65,13 +69,18 @@ var saveMusterPoint = function(e) {
 
     var eventName = $('#event-name').val();
     console.log(eventName);
-    socket.emit('addPoint', 
-        {   location: musterLocation, 
+
+    var data = {   location: musterLocation, 
             name: 'Clean up oil spill', 
             organiser: 'Bob', 
             phone: '12344509', 
             description: 'help us clean animals that have oil', 
             numvolunteers: '50'
-    });
+    }
+
+    socket.emit('addPoint', data);
+
+    forms[location] = adminForm;
+    data[location] = data;
     musterLocation = '';
 }
