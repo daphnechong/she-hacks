@@ -21,11 +21,14 @@ app.get('/admin', function(req, res) {
 
 io.sockets.on('connection', function(socket) {
 	
+	var musterPoints = [];
+
 	socket.on('update', function (data) {
 	    socket.broadcast.emit('update', data);
 	});
 
 	socket.on('addPoint', function(data) {
+		musterPoints[data.location] = { info: data, currentSignup: 0};
 		socket.broadcast.emit('addPoint', data)
 	})
 

@@ -32,17 +32,11 @@
         });
 
         socket.on('addPoint', function(data) {
-            // add point to map
-            console.log('addPoint ' +
-                    data.latitude + ' ' + data.longitude );
+            createMusterMarker(data);
         })
 
         socket.on('drawPolygon', function(data) {
-            // add point to polygon
-            console.log('drawPolygon ' +
-                    data.latitude + ' ' + data.longitude );
-
-			createMarker(data);
+			createPolygonMarker(data);
         })
 
         socket.on('stopPolygon', function(data) {
@@ -104,13 +98,6 @@
 
 <!-- call to action -->
 <div class="container">
-    <div id="row">
-        <div class="col-md-12">
-            <div id="sendmessage">click me to send a message</div>
-
-            <div id="registerVolunteer">click me to volunteer at a point</div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <div id="map_canvas">

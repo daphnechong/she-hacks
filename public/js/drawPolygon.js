@@ -33,7 +33,6 @@ function initialize(s) {
 
 }
 
-
 /**
  * Handles click events on a map, and adds a new point to the Polygon.
  * @param {google.maps.MouseEvent} event
@@ -43,10 +42,10 @@ function addLatLng(event) {
       return;
   }
 
-  createMarker(event.latLng)
+  createPolygonMarker(event.latLng)
 }
 
-function createMarker(data) {
+function createPolygonMarker(data) {
   path = poly.getPath();
 
   latLng = new google.maps.LatLng(data.k, data.A);
