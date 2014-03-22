@@ -1,13 +1,32 @@
 .navbar-inverse {
-    background-color: #ffffff;
-    border-color: #ffffff;
+    background-color: #323232;
+    border-color: #323232;
+
+    padding-top: 5px;
+}
+
+.brand {
+    font-family: 'Bangers', cursive;
+    color: #fff;
+    font-size: 48px;
+}
+
+.help-row {
+    font-family: 'Bangers', cursive;
+    font-size: 26px;
+    background-color: #fff;
 }
 
 
 .navbar-inverse .navbar-brand {
-    color: #ee8338;
+    color: #ffffff;
 }
 
+.tagline {
+    color: #F6B72E;
+    padding-left: 50px;
+    margin-top: -20px;
+}
 
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
     color: #F6B72E;
@@ -19,10 +38,32 @@
 }
 
 .jumbotron {
-    background-color: #EE8338;
-    color: #fff;
+    background-color: #fff;
+
 }
 
 .steps {
+    padding-top: 10px;
+
+    background-color: #F6B72E;
+
+}
+
+.help {
     padding-top: 40px;
+    background-color: #fff;
+}
+
+.i-can-help {
+    padding-left: 30px;
+}
+
+.i-need-help {
+    padding-left: 80px;
+}
+
+.i-can-help img, .i-need-help img {
+    width:50px;
+    height: auto;
+    padding-left: 10px;
 }

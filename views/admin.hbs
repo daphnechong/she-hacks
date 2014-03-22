@@ -7,15 +7,18 @@
     <title>{{title}}</title>
     <!-- Font Awesome Icons -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style-custom.css" rel="stylesheet">
 
 
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script src="js/admin/google-map-admin.js"></script>
 
     <script src="js/drawPolygon.js"></script>
+    <script src="js/admin/google-map-admin.js"></script>
+    <script src="js/map-styles.js"></script>
 
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -52,26 +55,24 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand nav-main" href="#">Disasterama</a>
-            <a class="navbar-brand nav-main" href="#">About</a>
-            <a class="navbar-brand nav-main" href="#">Contact</a>
+            <p class="brand">MISSION POSSIBLE</p>
+            <p class="tagline">Community. We help each other.</p>
         </div>
     </div>
 </div>
-
-<!-- call to action -->
 <div class="jumbotron">
+    <div class="container help">
+        <h3 class="help-row">
+            <span class="i-can-help">I CAN HELP! <img src="img/people.png"></span>
+            <span class="i-need-help">I NEED HELP! <img src="img/person.png"></span>
+        </h3>
+    </div>
     <div class="container steps">
-
-        <h3><i class="fa fa-arrow-right"></i>&nbsp;Step 1</h3>
-        <h3><i class="fa fa-arrow-right"></i>&nbsp;Step 2</h3>
-        <h3><i class="fa fa-arrow-right"></i>&nbsp;Step 3</h3>
+        <p>
+            Step 1. Find a mission near you <i class="fa fa-arrow-right"></i>
+            Step 2. Accept a mission <i class="fa fa-arrow-right"></i>
+            Step 3. Receive your instructions
+        </p>
     </div>
 </div>
 

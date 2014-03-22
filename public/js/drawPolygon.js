@@ -18,6 +18,8 @@ function initialize(s) {
 
   map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
+  setStyles(map);
+
   var polyOptions = {
     strokeColor: '#FF0000',
     strokeOpacity: 1.0,
@@ -63,3 +65,24 @@ function stop(isAdmin) {
 
     if (isAdmin) socket.emit('stopPolygon');
 }
+
+function setStyles() {
+    map.set('styles', [
+
+        {
+            featureType: 'poi',
+            elementType: 'geometry',
+            stylers: [
+                { visibility: 'off' }
+            ]
+        }, {
+            featureType: 'poi.attraction',
+            elementType: 'geometry',
+            stylers: [
+                { visibility: 'off' }
+            ]
+        }
+
+    ]);
+}
+
