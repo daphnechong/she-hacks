@@ -1,5 +1,5 @@
 
-var contentString = '<div id="content">'+
+var contentString = '<div id="content" >'+
     '<h4 id="firstHeading" class="firstHeading">Add a muster point</h4>'+
     '<div id="bodyContent">'+
         '<form role="form">' +
@@ -29,11 +29,37 @@ var adminForm = new google.maps.InfoWindow({
     content: contentString
 });
 
-var marker = new google.maps.Marker({
-    position: sydneyLatlng,
-    map: map,
-    title: 'Add a muster point'
+
+var infowindow = new google.maps.InfoWindow({
+content: contentString,
+maxWidth: 200
 });
-google.maps.event.addListener(marker, 'click', function() {
-    adminForm.open(map,marker);
-});
+
+
+var setupListeners = function() {
+      // Add a listener for the click event
+    google.maps.event.addListener(map, 'click', addLatLng);
+
+    //Add a listener for the click event
+    google.maps.event.addListener(map, 'click', function(event) {
+      addMuster(event.latLng);
+    });
+}
+
+function addMuster(location) {
+
+
+  if (stopDrawing) {
+      var muster = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+
+    google.maps.event.addListener(muster, 'click', function() {
+        console.log('muster', muster);
+        adminForm.open(map,muster);
+    });
+
+    adminForm.open(map,muster);
+  }
+}

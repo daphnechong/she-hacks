@@ -5,6 +5,8 @@
 var poly;
 var map;
 var socket;
+var path;
+var stopDrawing = false;
 
 function initialize(s) {
   socket = s;
@@ -21,15 +23,15 @@ function initialize(s) {
     strokeOpacity: 1.0,
     strokeWeight: 3
   };
+
   poly = new google.maps.Polygon(polyOptions);
   poly.setMap(map);
 
-  // Add a listener for the click event
-  google.maps.event.addListener(map, 'click', addLatLng);
+  setupListeners();
+
 }
 
-var path;
-var stopDrawing;
+
 /**
  * Handles click events on a map, and adds a new point to the Polygon.
  * @param {google.maps.MouseEvent} event
@@ -49,13 +51,6 @@ function createMarker(data) {
   // // Because path is an MVCArray, we can simply append a new coordinate
   // // and it will automatically appear.
   path.push(latLng);
-
-  // Add a new marker at the new plotted point on the polygon.
-  var marker = new google.maps.Marker({
-    position: latLng,
-    title: '#' + path.getLength(),
-    map: map
-  });
 
   if (!data.isUpdateMessage) {
     latLng.isUpdateMessage = true;
