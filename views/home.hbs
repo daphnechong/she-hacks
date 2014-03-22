@@ -40,7 +40,10 @@
                     data.latitude + ' ' + data.longitude );
 
 			createMarker(data);
+        })
 
+        socket.on('stopPolygon', function(data) {
+            stop(false);
         })
 
         socket.on('registerVolunteer', function(data) {

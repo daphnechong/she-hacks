@@ -33,6 +33,10 @@ io.sockets.on('connection', function(socket) {
 		socket.broadcast.emit('drawPolygon', data)
 	})
 
+	socket.on('stopPolygon', function(data) {
+		socket.broadcast.emit('stopPolygon', data)
+	})
+
 	socket.on('registerVolunteer', function(data) {
 // potentially add the socket to a channel, and/or keep track of the id so you can PM the volunteer
 

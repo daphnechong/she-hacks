@@ -63,38 +63,8 @@ function createMarker(data) {
   }
 }
 
-//google.maps.event.addDomListener(window, 'load', initialize);
-
-/**
- * Converts all the coordinates from path to a JSON String.
- */
-function showPathAsJson() {
-    if (!path) return;
-    var listOfCoordinates = new Array();
-
-    for (var i = 0; i < path.length; i++) {
-        var c = path.getAt(i);
-        listOfCoordinates.push({'lat': c.k, 'lon': c.A});
-    }
-
-    var asString = JSON.stringify(listOfCoordinates);
-    console.log('coordinates as JSON', asString);
-}
-
-
-/**
- * Converts a JSON string to a list of coordinates and then adds them to a map
- */
-function showExistingPath() {
-    // this json object will be retrieved from the server
-    var json = '[{"lat":-33.82450840458617,"lon":151.1916160583496},{"lat":-33.86571191586799,"lon":151.17616653442383},{"lat":-33.88110466676627,"lon":151.22629165649414},{"lat":-33.82964210524469,"lon":151.23985290527344}]' 
-    var listOfCoordinates = JSON.parse(json);
-    for (var i = 0; i < listOfCoordinates.length; i++) {
-        var latLng = new google.maps.LatLng(listOfCoordinates[i].lat, listOfCoordinates[i].lon);
-        addLatLng({"latLng" : latLng});
-    }
-}
-
-function stop() {
+function stop(isAdmin) {
     stopDrawing = true;
+
+    if (isAdmin) socket.emit('stopPolygon');
 }
