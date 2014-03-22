@@ -36,19 +36,14 @@
                 console.log('update : ' + data);
             });
 
-            // $('#sendmessage').click(function(){
-            //     console.log('clicked');
-            //     socket.emit('update', 'hi there from admin');
-            // });
-
-            // $('#addPoint').click(function() {
-            //     socket.emit('addPoint', { latitude: 'latitude', longitude: 'longitude'})
-            // })
-
             socket.on('registerVolunteer', function(data) {
                 // decrement count at point
                 console.log('need to decrement the count ' +
                         data.pointid );
+            })
+
+            $('#stopPolygon').click(function() {
+            	stop(true);
             })
         });
 
@@ -80,6 +75,8 @@
         </p>
     </div>
 </div>
+
+<div id="stopPolygon">stop polygon</div>
 
 <div class="container">
     <div class="row">
