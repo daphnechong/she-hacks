@@ -21,9 +21,9 @@ function initialize(s) {
   setStyles(map);
 
   var polyOptions = {
-    strokeColor: '#F6B72E',
+    strokeColor: '#ee8339',
     strokeOpacity: 0.9,
-    strokeWeight: 2
+    strokeWeight: 3
   };
 
   poly = new google.maps.Polygon(polyOptions);

@@ -14,6 +14,8 @@ function createMusterMarker(data) {
       map: map
     });
 
+    muster.setIcon('img/muster-not-full.png')
+
     form = new google.maps.InfoWindow({
         content: data.name + ' ' + data.organiser + ' ' + data.phone + ' ' + data.description  + ' ' +data.numvolunteers
     });

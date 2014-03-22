@@ -20,7 +20,7 @@ var contentString = '<div id="content" >'+
 
                 '<input type="text" class="form-control" id="num-volunteers" placeholder="Number of volunteers">' +
             '</div>' +
-            '<div class="btn btn-default" onclick="saveMusterPoint()">Create</div>' +
+            '<div class="btn btn-default" id="save-event" onclick="saveMusterPoint();">Create</div>' +
         '</form>' +
     '</div>'+
     '</div>';
@@ -56,23 +56,31 @@ function createMusterMarker(location) {
         adminForm.open(map,muster);
     });
 
-    adminForm.open(map,muster);
+    adminForm.open(map, muster);
     musterLocation = location;
+
   }
+
 }
 
-var saveMusterPoint = function(e) {
-    adminForm.close();
+function saveMusterPoint() {
 
-    var eventName = $('#event-name').val();
-    console.log(eventName);
-    socket.emit('addPoint', 
-        {   location: musterLocation, 
-            name: 'Clean up oil spill', 
-            organiser: 'Bob', 
-            phone: '12344509', 
-            description: 'help us clean animals that have oil', 
-            numvolunteers: '50'
+    var eventName = document.getElementById('event-name').value;
+    var organiser = document.getElementById('organiser').value;
+    var phoneNumber = document.getElementById('phone-num').value;
+    var eventDesc = document.getElementById('event-desc').value;
+    var numVolunteers = document.getElementById('num-volunteers').value;
+
+
+    console.log("event name is: "+eventName);
+    socket.emit('addPoint',
+        {   location: musterLocation,
+            name: eventName,
+            organiser: organiser,
+            phone: phoneNumber,
+            description: eventDesc,
+            numvolunteers: numVolunteers
     });
     musterLocation = '';
+    adminForm.close();
 }
