@@ -12,6 +12,8 @@ bower_components/
 pids
 logs
 results
+public/.DS_Store
+public/img/.DS_Store
 
 npm-debug.log
 node_modules

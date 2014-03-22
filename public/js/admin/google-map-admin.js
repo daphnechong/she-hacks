@@ -20,7 +20,7 @@ var contentString = '<div id="content" >'+
 
                 '<input type="text" class="form-control" id="num-volunteers" placeholder="Number of volunteers">' +
             '</div>' +
-            '<button type="submit" class="btn btn-default">Create</button>' +
+            '<div class="btn btn-default create-event">Create</button>' +
         '</form>' +
     '</div>'+
     '</div>';
@@ -54,6 +54,8 @@ function addMuster(location) {
       position: location,
       map: map
     });
+
+    muster.setIcon('img/muster-not-full.png')
 
     google.maps.event.addListener(muster, 'click', function() {
         console.log('muster', muster);
