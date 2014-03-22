@@ -21,9 +21,9 @@ function initialize(s) {
   setStyles(map);
 
   var polyOptions = {
-    strokeColor: '#FF0000',
-    strokeOpacity: 1.0,
-    strokeWeight: 3
+    strokeColor: '#F6B72E',
+    strokeOpacity: 0.9,
+    strokeWeight: 2
   };
 
   poly = new google.maps.Polygon(polyOptions);
@@ -32,7 +32,6 @@ function initialize(s) {
   setupListeners();
 
 }
-
 
 /**
  * Handles click events on a map, and adds a new point to the Polygon.
@@ -43,10 +42,10 @@ function addLatLng(event) {
       return;
   }
 
-  createMarker(event.latLng)
+  createPolygonMarker(event.latLng)
 }
 
-function createMarker(data) {
+function createPolygonMarker(data) {
   path = poly.getPath();
 
   latLng = new google.maps.LatLng(data.k, data.A);

@@ -20,21 +20,13 @@ var contentString = '<div id="content" >'+
 
                 '<input type="text" class="form-control" id="num-volunteers" placeholder="Number of volunteers">' +
             '</div>' +
-            '<div class="btn btn-default create-event">Create</button>' +
+            '<div class="btn btn-default" onclick="saveMusterPoint()">Create</div>' +
         '</form>' +
     '</div>'+
     '</div>';
 
-var adminForm = new google.maps.InfoWindow({
-    content: contentString
-});
-
-
-var infowindow = new google.maps.InfoWindow({
-content: contentString,
-maxWidth: 200
-});
-
+var adminForm;
+var musterLocation;
 
 var setupListeners = function() {
       // Add a listener for the click event
@@ -42,20 +34,22 @@ var setupListeners = function() {
 
     //Add a listener for the click event
     google.maps.event.addListener(map, 'click', function(event) {
-      addMuster(event.latLng);
+      createMusterMarker(event.latLng);
     });
 }
 
-function addMuster(location) {
-
+function createMusterMarker(location) {
 
   if (stopDrawing) {
       var muster = new google.maps.Marker({
       position: location,
       map: map
     });
-
     muster.setIcon('img/muster-not-full.png')
+
+    adminForm = new google.maps.InfoWindow({
+        content: contentString
+    });
 
     google.maps.event.addListener(muster, 'click', function() {
         console.log('muster', muster);
@@ -63,5 +57,22 @@ function addMuster(location) {
     });
 
     adminForm.open(map,muster);
+    musterLocation = location;
   }
+}
+
+var saveMusterPoint = function(e) {
+    adminForm.close();
+
+    var eventName = $('#event-name').val();
+    console.log(eventName);
+    socket.emit('addPoint', 
+        {   location: musterLocation, 
+            name: 'Clean up oil spill', 
+            organiser: 'Bob', 
+            phone: '12344509', 
+            description: 'help us clean animals that have oil', 
+            numvolunteers: '50'
+    });
+    musterLocation = '';
 }
