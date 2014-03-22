@@ -3,28 +3,27 @@ var setupListeners = function() {
 
 };
 
+var forms = [];
 
 function createMusterMarker(data) {
   if (stopDrawing) {
-      var muster = new google.maps.Marker({
-      position: data.location,
+
+  	latLng = new google.maps.LatLng(data.location.k, data.location.A); // <-- this line
+    var muster = new google.maps.Marker({
+      position: latLng, // <-- this line
       map: map
     });
 
-    adminForm = new google.maps.InfoWindow({
-        content: contentString
+    form = new google.maps.InfoWindow({
+        content: data.name + ' ' + data.organiser + ' ' + data.phone + ' ' + data.description  + ' ' +data.numvolunteers
     });
 
-    google.maps.event.addListener(muster, 'click', function() {
-    // 	{   location: musterLocation, 
-    //         name: 'Clean up oil spill', 
-    //         organiser: 'Bob', 
-    //         phone: '12344509', 
-    //         description: 'help us clean animals that have oil', 
-    //         numvolunteers: '50'
-    // }
+    forms[data.location] = form;
 
-        console.log('muster', data.name, data.organiser, data.phone, data.description, data.numvolunteers);
+    form.open(map,muster);
+
+    google.maps.event.addListener(muster, 'click', function() {
+    	forms[data.location].open(map, muster);
     });
   }
 }
