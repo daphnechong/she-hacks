@@ -52,6 +52,7 @@
 .help {
     padding-top: 40px;
     background-color: #fff;
+
 }
 
 .i-can-help {
@@ -66,4 +67,23 @@
     width:50px;
     height: auto;
     padding-left: 10px;
+}
+
+.map {
+
+}
+
+.fa-arrow-right {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.help-outer {
+    padding-bottom: 0px;
+    margin-bottom: 1px;
+}
+
+.map-container {
+    padding-left: 0px;
+    padding-right: 0px;
 }
