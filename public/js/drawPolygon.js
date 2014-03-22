@@ -21,8 +21,8 @@ function initialize(s) {
   setStyles(map);
 
   var polyOptions = {
-    strokeColor: '#FF0000',
-    strokeOpacity: 1.0,
+    strokeColor: '#ee8339',
+    strokeOpacity: 0.9,
     strokeWeight: 3
   };
 

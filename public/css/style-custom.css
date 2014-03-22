@@ -9,6 +9,7 @@
     font-family: 'Bangers', cursive;
     color: #fff;
     font-size: 48px;
+    padding-left: 10px;
 }
 
 .help-row {
@@ -56,11 +57,11 @@
 }
 
 .i-can-help {
-    padding-left: 30px;
+    padding-left: 20px;
 }
 
 .i-need-help {
-    padding-left: 80px;
+    padding-left: 30px;
 }
 
 .i-can-help img, .i-need-help img {
@@ -81,6 +82,9 @@
 .help-outer {
     padding-bottom: 0px;
     margin-bottom: 1px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 50px;
 }
 
 .map-container {
@@ -91,4 +95,8 @@
 .missions {
     padding-left: 600px;
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+footer {
+    color: #F6B72E;
 }

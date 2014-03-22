@@ -20,7 +20,7 @@ var contentString = '<div id="content" >'+
 
                 '<input type="text" class="form-control" id="num-volunteers" placeholder="Number of volunteers">' +
             '</div>' +
-            '<div class="btn btn-default" onclick="saveMusterPoint()">Create</div>' +
+            '<div class="btn btn-default" id="save-event" onclick="saveMusterPoint();">Create</div>' +
         '</form>' +
     '</div>'+
     '</div>';
@@ -48,6 +48,7 @@ function createMusterMarker(location) {
       position: location,
       map: map
     });
+    muster.setIcon('img/muster-not-full.png')
 
     adminForm = new google.maps.InfoWindow({
         content: contentString
@@ -61,26 +62,32 @@ function createMusterMarker(location) {
     adminForm.open(map,muster);
     points[location] = muster;
     musterLocation = location;
+
   }
+
 }
 
-var saveMusterPoint = function(e) {
-    adminForm.close();
+function saveMusterPoint() {
+    var eventName = document.getElementById('event-name').value;
+    var organiser = document.getElementById('organiser').value;
+    var phoneNumber = document.getElementById('phone-num').value;
+    var eventDesc = document.getElementById('event-desc').value;
+    var numVolunteers = document.getElementById('num-volunteers').value;
 
-    var eventName = $('#event-name').val();
-    console.log(eventName);
 
-    var data = {   location: musterLocation, 
-            name: 'Clean up oil spill', 
-            organiser: 'Bob', 
-            phone: '12344509', 
-            description: 'help us clean animals that have oil', 
-            numvolunteers: '50'
-    }
+    console.log("event name is: "+eventName);
 
+    var data = {   location: musterLocation,
+            name: eventName,
+            organiser: organiser,
+            phone: phoneNumber,
+            description: eventDesc,
+            numvolunteers: numVolunteers
+    };
     socket.emit('addPoint', data);
-
     forms[location] = adminForm;
     data[location] = data;
+
     musterLocation = '';
+    adminForm.close();
 }
