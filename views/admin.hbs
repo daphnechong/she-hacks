@@ -37,9 +37,7 @@
             });
 
             socket.on('registerVolunteer', function(data) {
-                // decrement count at point
-                console.log('need to decrement the count ' +
-                        data.pointid );
+                registerVolunteer(data);
             })
 
             $('#stopPolygon').click(function() {

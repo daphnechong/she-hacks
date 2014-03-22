@@ -27,6 +27,9 @@ var contentString = '<div id="content" >'+
 
 var adminForm;
 var musterLocation;
+var forms = [];
+var points = [];
+var data = [];
 
 var setupListeners = function() {
       // Add a listener for the click event
@@ -56,7 +59,8 @@ function createMusterMarker(location) {
         adminForm.open(map,muster);
     });
 
-    adminForm.open(map, muster);
+    adminForm.open(map,muster);
+    points[location] = muster;
     musterLocation = location;
 
   }
@@ -64,7 +68,6 @@ function createMusterMarker(location) {
 }
 
 function saveMusterPoint() {
-
     var eventName = document.getElementById('event-name').value;
     var organiser = document.getElementById('organiser').value;
     var phoneNumber = document.getElementById('phone-num').value;
@@ -73,14 +76,18 @@ function saveMusterPoint() {
 
 
     console.log("event name is: "+eventName);
-    socket.emit('addPoint',
-        {   location: musterLocation,
+
+    var data = {   location: musterLocation,
             name: eventName,
             organiser: organiser,
             phone: phoneNumber,
             description: eventDesc,
             numvolunteers: numVolunteers
-    });
+    };
+    socket.emit('addPoint', data);
+    forms[location] = adminForm;
+    data[location] = data;
+
     musterLocation = '';
     adminForm.close();
 }

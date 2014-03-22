@@ -19,16 +19,20 @@ app.get('/admin', function(req, res) {
   res.render('admin');
 });
 
+var musterPoints = [];
 io.sockets.on('connection', function(socket) {
 	
-	var musterPoints = [];
 
 	socket.on('update', function (data) {
 	    socket.broadcast.emit('update', data);
 	});
 
 	socket.on('addPoint', function(data) {
-		musterPoints[data.location] = { info: data, currentSignup: 0};
+
+		data.currentSignup = 0;
+		musterPoints[data.location.k] = data;
+		console.log ('addpoint')
+		console.log(musterPoints[data.location.k]);
 		socket.broadcast.emit('addPoint', data)
 	})
 
@@ -41,6 +45,12 @@ io.sockets.on('connection', function(socket) {
 	})
 
 	socket.on('registerVolunteer', function(data) {
+		console.log ('register volunteer')
+		console.log(data.location)
+		console.log(musterPoints)
+		console.log(musterPoints[data.location.k])
+		musterPoints[data.location.k].currentSignup += data.numvolunteers;
+
 // potentially add the socket to a channel, and/or keep track of the id so you can PM the volunteer
 
 // http://stackoverflow.com/questions/6563885/socket-io-how-do-i-get-a-list-of-connected-sockets-clients
@@ -52,7 +62,7 @@ io.sockets.on('connection', function(socket) {
 //     });    
 // });
 
-		io.sockets.emit('registerVolunteer', data)
+		io.sockets.emit('registerVolunteer', musterPoints[data.location.k])
 	})
 });
 

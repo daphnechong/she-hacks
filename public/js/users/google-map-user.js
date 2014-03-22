@@ -3,6 +3,8 @@ var setupListeners = function() {
 
 };
 
+var points = [];
+var data = [];
 var forms = [];
 
 function createMusterMarker(data) {
@@ -21,11 +23,24 @@ function createMusterMarker(data) {
     });
 
     forms[data.location] = form;
+    points[data.location] = muster;
 
     form.open(map,muster);
 
     google.maps.event.addListener(muster, 'click', function() {
     	forms[data.location].open(map, muster);
+
+    	socket.emit('registerVolunteer', { location: data.location, name: 'alice', phone: '12121', numvolunteers: 2})
     });
   }
+}
+
+function registerVolunteer(data) {
+
+    var form = forms[data.location];
+
+    var content = ' new update! ' + data.currentSignup + form.content;
+
+	form.content = content;
+	form.open(map, points[data.location]);
 }
