@@ -29,11 +29,6 @@ var adminForm = new google.maps.InfoWindow({
     content: contentString
 });
 
-var marker = new google.maps.Marker({
-    position: sydneyLatlng,
-    map: map,
-    title: 'Add a muster point'
-});
-google.maps.event.addListener(marker, 'click', function() {
-    adminForm.open(map,marker);
-});
+//google.maps.event.addListener(marker, 'click', function() {
+//    adminForm.open(map,marker);
+//});
