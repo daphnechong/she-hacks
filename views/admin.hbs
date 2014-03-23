@@ -37,7 +37,9 @@
             });
 
             socket.on('registerVolunteer', function(data) {
-                registerVolunteer(data);
+                console.log('hihih')
+                console.log(data)
+                updateVolunteerSignup(data);
             })
 
             $('#stopPolygon').click(function() {
@@ -80,14 +82,14 @@
 <div class="container map-container">
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-1">
             <div id="">
                 <br>
-                <button id="stopPolygon" type="button" class="btn btn-warning">Stop Drawing</button>
+                <button id="stopPolygon" type="button" class="btn btn-warning">Stop</button>
             </div>
 
         </div>
-        <div class="col-md-9">
+        <div class="col-md-11">
             <div id="map_canvas">
 
             </div>

@@ -47,7 +47,7 @@ io.sockets.on('connection', function(socket) {
 	socket.on('registerVolunteer', function(data) {
 		console.log ('register volunteer')
 		console.log(data.location)
-		console.log(musterPoints)
+		//console.log(musterPoints)
 		console.log(musterPoints[data.location.k])
 		musterPoints[data.location.k].currentSignup += data.numvolunteers;
 
@@ -61,7 +61,8 @@ io.sockets.on('connection', function(socket) {
 //         io.sockets.sockets[sock_id].emit("private", "message");
 //     });    
 // });
-
+		console.log ('yo!!!!!')
+		console.log(musterPoints[data.location.k])
 		io.sockets.emit('registerVolunteer', musterPoints[data.location.k])
 	})
 });

@@ -7,6 +7,7 @@ var points = [];
 var data = [];
 var forms = [];
 var musterLocation;
+var volunteerForms = [];
 
 function createMusterMarker(data) {
 
@@ -58,8 +59,6 @@ function createMusterMarker(data) {
 
     google.maps.event.addListener(muster, 'click', function() {
     	forms[data.location].open(map, muster);
-
-    	
     });
   }
 }
@@ -72,7 +71,7 @@ function registerVolunteer() {
     // var volPhone = document.getElementById('volunteer-phone-num').value;
     // var volNumFriends = document.getElementById('num-volunteers-friends').value;
 
-    var data = { location: musterLocation, name: "Daphne", phone: "0451588585", numvolunteers: "2"};
+    var data = { location: musterLocation, name: "Daphne", phone: "00000000", numvolunteers: "2"};
     socket.emit('registerVolunteer', data);
     console.log("muster location: "+ musterLocation);
     
@@ -82,7 +81,8 @@ function registerVolunteer() {
     
 
  //    var content = ' new update! ' + data.currentSignup + form.content;
+}
 
-	// form.content = content;
-	// form.open(map, points[data.location]);
+function updateVolunteerSignup(data) {
+
 }

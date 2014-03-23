@@ -29,7 +29,8 @@ var adminForm;
 var musterLocation;
 var forms = [];
 var points = [];
-var data = [];
+var allData = [];
+var numVolunteersInfo = [];
 
 var setupListeners = function() {
       // Add a listener for the click event
@@ -54,13 +55,19 @@ function createMusterMarker(location) {
         content: contentString
     });
 
+    numVolunteersForm = new google.maps.InfoWindow({
+        content: 'There are 0 volunteers out of 0 requested'
+    });
+
+
     google.maps.event.addListener(muster, 'click', function() {
         console.log('muster', muster);
-        adminForm.open(map,muster);
+        numVolunteersForm.open(map,muster);
     });
 
     adminForm.open(map,muster);
-    points[location] = muster;
+    points[location.k] = muster;
+    numVolunteersInfo[location.k] = numVolunteersForm;
     musterLocation = location;
 
   }
@@ -85,9 +92,29 @@ function saveMusterPoint() {
             numvolunteers: numVolunteers
     };
     socket.emit('addPoint', data);
-    forms[location] = adminForm;
-    data[location] = data;
+    forms[location.k] = adminForm;
+    allData[location.k] = data;
 
     musterLocation = '';
     adminForm.close();
+}
+
+function updateVolunteerSignup(mydata) {
+    // console.log (mydata.location);
+    // console.log(points);
+    var musterPoint = points[mydata.location.k];
+    // musterPoint.open()
+
+
+//    currentData = allData[myData.location.k];
+    var content = '2 out of 30 volunteers requested have signed up  '
+    numVolunteersForm = new google.maps.InfoWindow({
+        content: content
+    });
+
+    numVolunteersForm.open(map, musterPoint);
+    // numVolunteersInfo[mydata.location.k].open(map, content)
+
+    // form.content = content;
+    // form.open(map, points[mydata.location.k]);
 }
